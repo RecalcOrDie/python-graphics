@@ -1,0 +1,22 @@
+data = tbl
+# Define the columns of interest
+variables = xl( "E8:E17" , headers = True )     
+selected = variables['Measures'].dropna().tolist()
+
+# Extract the specified columns and compute the correlation matrix
+subset_data = data[ selected ]
+correlation_matrix = subset_data.corr()
+
+# Plotting the heatmap
+plt.figure ( figsize = ( 14 , 10 ) )
+
+sns.heatmap ( correlation_matrix , 
+              annot = True , 
+              cmap = "flare" , 
+              fmt = ".2f" , 
+              linewidths = 0.5 , 
+              linecolor = "white" )
+
+plt.title( "Correlation Heatmap" , fontsize = 20 )
+ 
+plt.show()
